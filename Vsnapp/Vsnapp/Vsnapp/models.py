@@ -17,6 +17,7 @@ class Apriser(db.Model, UserMixin):
     adres = db.Column(db.String(1000))
     city = db.Column(db.String(1000))
     passportid = db.Column(db.Integer)
+    isBusy = db.Column(db.Boolean)
 
     def __repr__(self):
         return '<Apriser %r>' % self.username

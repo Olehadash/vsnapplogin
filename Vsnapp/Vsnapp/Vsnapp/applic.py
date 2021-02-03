@@ -55,7 +55,7 @@ def busy_garage_app():
     content = request.get_json()
 
     login = content['login']
-    garage = Garage.query.filter_by(user=login).first()
+    garage = Apriser.query.filter_by(name=login).first()
 
     return garage.isBusy
 
@@ -66,7 +66,7 @@ def setbusy_garage_app():
 
     login = content['login']
     isbusy = content['isbusy']
-    garage = Garage.query.filter_by(user=login).first()
+    garage = Apriser.query.filter_by(name=login).first()
     arage.isBusy = isbusy
 
     return garage.isBusy
