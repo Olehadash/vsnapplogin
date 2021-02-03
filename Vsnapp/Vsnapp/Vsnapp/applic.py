@@ -44,6 +44,11 @@ def get_garage_app():
     garages = Garage.query.all()
     return jsonify(data = [i.serialize for i in garages]),200
 
+@applic.route('/get_apriser_app', methods=['GET'])
+def get_apriser_app():
+    apris = Apriser.query.all()
+    return jsonify(data = [i.serialize for i in apris]),200
+
 @applic.route('/busy_garage_app', methods=['POST'])
 def busy_garage_app():
 
