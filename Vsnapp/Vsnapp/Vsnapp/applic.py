@@ -55,8 +55,8 @@ def busy_garage_app():
 
     #content = request.get_json()
 
-    login = content['login']
-    garage = Apriser.query.filter_by(name=login).first()
+    login = request.form.get('login')
+    garage = Apriser.query.filter_by(user=login).first()
 
     return garage.isBusy
 
@@ -65,10 +65,12 @@ def setbusy_garage_app():
 
     content = request.get_json()
 
-    login = content['login']
-    isbusy = content['isbusy']
-    garage = Apriser.query.filter_by(name=login).first()
+    login = request.form.get('login')
+    isbusy = request.form.get('isbusy')
+    garage = Apriser.query.filter_by(user=login).first()
     arage.isBusy = isbusy
+
+    db.session.commit()
 
     return garage.isBusy
 
