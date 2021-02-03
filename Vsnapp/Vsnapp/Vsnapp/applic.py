@@ -12,16 +12,16 @@ applic = Blueprint('applic', __name__)
 @applic.route('/login_app', methods=['POST'])
 def login_app_post():
 
-    content = request.get_json()
+    #content = request.get_json()
 
-    login = content['login']
-    mobile = content['mobile']
-    apriser = Apriser.query.filter_by(login=login).first()
+    login = request.form.get('login')
+    password = request.form.get('password')
+    apriser = Apriser.query.filter_by(user=login).first()
 
     if not apriser:
         return jsonify(msg = "Logon Error. "), 401
 
-    if not apriser.mobile == mobile:
+    if not apriser.password == password:
         return jsonify(msg = "Password Error. "), 401
 
     return jsonify(data = apriser.serialize), 200
@@ -29,12 +29,13 @@ def login_app_post():
 @applic.route('/login_garage_app', methods=['POST'])
 def login_garage_app():
 
-    content = request.get_json()
+    login = request.form.get('login')
+    #content = request.get_json()
 
-    login = content['login']
+    #login = content['login']
     garage = Garage.query.filter_by(user=login).first()
 
-    if not apriser:
+    if not garage:
         return jsonify(msg = "Logon Error. "), 401
 
     return jsonify(data = garage.serialize), 200
@@ -52,7 +53,7 @@ def get_apriser_app():
 @applic.route('/busy_garage_app', methods=['POST'])
 def busy_garage_app():
 
-    content = request.get_json()
+    #content = request.get_json()
 
     login = content['login']
     garage = Apriser.query.filter_by(name=login).first()

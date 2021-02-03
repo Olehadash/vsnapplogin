@@ -57,17 +57,28 @@ def create_apriser():
 
     if apriser:
         apriser.name= name
-        apriser.user= user
-        apriser.email= email
-        apriser.password= password
-        apriser.login= login
-        apriser.mobile= mobile
-        apriser.phone= phone
-        apriser.fax= fax
-        apriser.organization= organization
-        apriser.adres= adres
-        apriser.city= city
-        apriser.passpotid= passpotid
+        if user != "":
+            apriser.user= user
+        if email != "":
+            apriser.email= email
+        if password != "":
+            apriser.password= password
+        if login != "":
+            apriser.login= login
+        if mobile != "":
+            apriser.mobile= mobile
+        if phone != "":
+            apriser.phone= phone
+        if fax != "":
+            apriser.fax= fax
+        if organization != "":
+            apriser.organization= organization
+        if adres != "":
+            apriser.adres= adres
+        if city != "":
+            apriser.city= city
+        if passpotid != "":
+            apriser.passpotid= passpotid
         db.session.commit()
         flash('Existing Apriser updated.')
         return redirect(url_for('auth.create'))
