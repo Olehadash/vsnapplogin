@@ -24,7 +24,7 @@ def login_app_post():
     if not apriser.password == password:
         return jsonify(msg = "Password Error. "), 401
 
-    return jsonify(data = apriser.serialize), 200
+    return jsonify(apriser.serialize), 200
 
 @applic.route('/login_garage_app', methods=['POST'])
 def login_garage_app():
