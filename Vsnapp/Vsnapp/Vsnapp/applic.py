@@ -58,12 +58,15 @@ def busy_garage_app():
     login = request.form.get('login')
     garage = Apriser.query.filter_by(user=login).first()
 
-    return garage.isBusy
+    if not garage:
+        return "Is no garage with user = " + login
+
+    return jsonify(msg = garage.isBusy)
 
 @applic.route('/setbusy_garage_app', methods=['POST'])
 def setbusy_garage_app():
 
-    content = request.get_json()
+    #content = request.get_json()
 
     login = request.form.get('login')
     isbusy = request.form.get('isbusy')
