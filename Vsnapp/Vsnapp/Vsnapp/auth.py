@@ -1,9 +1,9 @@
-from flask import Blueprint, render_template, redirect, request, jsonify
+from flask import Blueprint, render_template, redirect, request, jsonify, abort, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import *
 from . import db
 from flask_login import UserMixin
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required,  current_user
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, get_raw_jwt
 from sqlalchemy import or_
 
@@ -35,8 +35,13 @@ def login_post():
     return redirect(url_for('auth.create'))
 
 @auth.route('/create')
+@login_required
 def create():
-    return render_template('login.html')
+    if current_user.is_authenticated:
+         return render_template('create.html')
+    else:
+        return redirect(url_for('auth.login'))
+    
 
 @auth.route('/create_apriser', methods=['POST'])
 def create_apriser():
@@ -56,9 +61,9 @@ def create_apriser():
     apriser = Apriser.query.filter_by(name=name).first()
 
     if apriser:
-        apriser.name= name
-        if user != "":
-            apriser.user= user
+        apriser.user= user
+        if name != "":
+            apriser.name= name
         if email != "":
             apriser.email= email
         if password != "":
@@ -112,3 +117,9 @@ def create_garage():
     db.session.commit()
     flash('Garage Created.')
     return redirect(url_for('auth.create'))
+
+@auth.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))

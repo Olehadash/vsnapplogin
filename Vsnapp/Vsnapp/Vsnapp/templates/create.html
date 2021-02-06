@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="column is-4 is-offset-4">
-    <h3 class="title">Sign Up</h3>
+    <h3 class="title">Add Customer</h3>
     <div class="box">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <button class="button is-block is-info is-large is-fullwidth">Add Apriser</button>
+            <button class="button is-block is-info is-large is-fullwidth">Add/Update Garage</button>
         </form>
 
         <form method="POST" action="/create_garage">
@@ -107,7 +107,7 @@
                 </div>
             </div>
 
-            <button class="button is-block is-info is-large is-fullwidth">Add Garage</button>
+            <button class="button is-block is-info is-large is-fullwidth">Add/Update Appriser</button>
         </form>
     </div>
 </div>
