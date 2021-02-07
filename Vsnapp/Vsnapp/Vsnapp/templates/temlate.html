@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask Auth Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+
+    <style>
+		table {
+			width: 100%;
+			
+  			border: 1px solid black;
+  			border-collapse: collapse;
+		}
+		th, td {
+  			padding: 5px;
+  			border: 1px solid black;
+  			text-align: left;    
+		}
+		.Tablediv{
+			width: 70%;
+			flex: right
+		}
+		.Block{
+			display: inline;
+		}
+	</style>
+
+</head>
+
+<body>
+    <section class="hero is-primary is-fullheight">
+
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a href="{{ url_for('auth.create') }}" class="navbar-item">
+                                Create Garage
+                            </a>
+                            <a href="{{ url_for('auth.create') }}" class="navbar-item">
+                                Create apriser
+                            </a>
+                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                                Logout
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="tile is-ancestor columns">
+            <div class="column is-one-quarter">
+            	<div>
+    				<h3 class="title">Add Customer</h3>
+    				<div class="box">
+        
+        				<form method="POST" action="/create_apriser">
+            					<div class="field">
+                					<div class="control">
+                    					<input class="input is-large" type="text" name="name" placeholder="שם" autofocus="">
+                					</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                    					<input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
+                					</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                    					<input class="input is-large" type="password" name="password" placeholder="סיסמא">
+                					</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                   						<input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
+                					</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                    					<input class="input is-large" type="text" name="login" placeholder="מייצג" autofocus="">
+                					</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                    					<input class="input is-large" type="text" name="mobile" placeholder="נייד" autofocus="">
+                					</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                    					<input class="input is-large" type="text" name="phone" placeholder="טלפון" autofocus="">
+                					</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                    					<input class="input is-large" type="text" name="orgamization" placeholder="שם_למסמכים" autofocus="">
+                					</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                    					<input class="input is-large" type="text" name="fax" placeholder="פקס" autofocus="">
+                					</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                					    <input class="input is-large" type="text" name="adres" placeholder="כתובת" autofocus="">
+            				    	</div>
+            					</div>
+
+            					<div class="field">
+            		    			<div class="control">
+            		        			<input class="input is-large" type="text" name="city" placeholder="עיר" autofocus="">
+           		     				</div>
+            					</div>
+
+            					<div class="field">
+                					<div class="control">
+                    					<input class="input is-large" type="text" name="passpotid" placeholder="ח.פ./ת.ז" autofocus="">
+                					</div>
+            					</div>
+
+           						<button class="button is-block is-info is-large is-fullwidth">Add/Update Garage</button>
+        				</form>
+					</div>
+            	</div>
+            </div>
+            <div class="column is-three-quarters">
+            	<div>
+            		<h3 class="title is-child">Garage Table</h3>
+            		<div class="box">
+            			<div class = "colums" >
+            				<table>
+            					<tr>
+            						<th>שם</th>
+            						<th>USER</th>
+            						<th>סיסמא</th>
+            						<th> EMAIL </th>
+            						<th> מייצג </th>
+            						<th> נייד </th>
+            						<th> טלפון  </th>
+            						<th> שם_למסמכים </th>
+            						<th> פקס </th>
+            						<th> כתובת </th>
+            						<th> עיר </th>
+            						<th> ח.פ./ת.ז </th>
+            					</tr>
+            				</table>
+            			</div>
+            		</div>
+            	</div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

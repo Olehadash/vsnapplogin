@@ -1,0 +1,94 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<div class="tile is-ancestor columns">
+    <div class="column is-one-quarter">
+        <h3 class="title">Add Apriser</h3>
+        <div class="box">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">create page</a>.
+            </div>
+            {% endif %}
+            {% endwith %}
+            <form method="POST" action="/create_garage">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="name" placeholder="שם" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="password" name="password" placeholder="סיסמא">
+                    </div>
+                </div>
+                <button class="button is-block is-info is-large is-fullwidth">Add/Update</button>
+            </form>
+
+
+        </div>
+        <div class="box">
+            <form method="POST" action="/delete_garage">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
+                    </div>
+                </div>
+                <button class="button is-block is-info is-large is-fullwidth">DELETE</button>
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="/block_garage">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
+                    </div>
+                </div>
+                <button class="button is-block is-info is-large is-fullwidth">BLOCK/UNBLOCK</button>
+            </form>
+        </div>
+    </div>
+    <div class="column is-three-quarters">
+        <div>
+            <h3 class="title is-child">Apriser Table</h3>
+            <div class="box">
+                <div class="colums">
+                    <table>
+                        <tr>
+                            <th>id</th>
+                            <th>שם</th>
+                            <th>USER</th>
+                            <th>סיסמא</th>
+                        </tr>
+                        <indent>
+                            {% for x in aprisers: %}
+                            {% if x.isBlocked == 1 %}
+                            <tr style="background-color: red">
+                                {% else %}
+                            <tr>
+                                {% endif %}
+                                <th>{{ x.id }}</th>
+                                <th>{{ x.name }}</th>
+                                <th>{{ x.user}}</th>
+                                <th>{{ x.password}}</th>
+                            </tr>
+                            {% endfor %}
+                        </indent>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    {% endblock %}
+

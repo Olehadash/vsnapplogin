@@ -74,6 +74,7 @@
     <Content Include="Vsnapp\static\scripts\_references.js" />
     <Content Include="Vsnapp\templates\base.html" />
     <Content Include="Vsnapp\templates\create.html" />
+    <Content Include="Vsnapp\templates\createGarage.html" />
     <Content Include="Vsnapp\templates\login.html" />
   </ItemGroup>
   <ItemGroup>

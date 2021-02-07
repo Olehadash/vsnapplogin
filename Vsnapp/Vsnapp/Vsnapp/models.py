@@ -6,9 +6,9 @@ import datetime
 class Apriser(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     name = db.Column(db.String(1000))
-    user = db.Column(db.String(1000))
+    user = db.Column(db.String(1000), unique=True)
     password = db.Column(db.String(1000))
-    email = db.Column(db.String(100), unique=True)
+    email = db.Column(db.String(100))
     login = db.Column(db.String(1000))
     mobile = db.Column(db.Integer)
     phone = db.Column(db.Integer)
@@ -18,6 +18,7 @@ class Apriser(db.Model, UserMixin):
     city = db.Column(db.String(1000))
     passportid = db.Column(db.Integer)
     isBusy = db.Column(db.Boolean)
+    isBlocked = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Apriser %r>' % self.username
@@ -47,6 +48,7 @@ class Garage(db.Model, UserMixin):
     user = db.Column(db.String(1000))
     isBusy = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     password = db.Column(db.String(1000))
+    isBlocked = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Garage %r>' % self.name

@@ -1,115 +1,165 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
+<div class="tile is-ancestor columns">
+    <div class="column is-one-quarter">
+        <h3 class="title">Add Customer</h3>
+        <div class="box">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">create page</a>.
+            </div>
+            {% endif %}
+            {% endwith %}
+            <form method="POST" action="/create_apriser">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="name" placeholder="שם" autofocus="">
+                    </div>
+                </div>
 
-<div class="column is-4 is-offset-4">
-    <h3 class="title">Add Customer</h3>
-    <div class="box">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="notification is-danger">
-            {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">create page</a>.
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="password" name="password" placeholder="סיסמא">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="login" placeholder="מייצג" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="mobile" placeholder="נייד" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="phone" placeholder="טלפון" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="orgamization" placeholder="שם_למסמכים" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="fax" placeholder="פקס" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="adres" placeholder="כתובת" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="city" placeholder="עיר" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="passpotid" placeholder="ח.פ./ת.ז" autofocus="">
+                    </div>
+                </div>
+
+                <button class="button is-block is-info is-large is-fullwidth">Add/Update</button>
+            </form>
+
+
         </div>
-        {% endif %}
-        {% endwith %}
-        <form method="POST" action="/create_apriser">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="name" placeholder="שם" autofocus="">
+        <div class="box">
+            <form method="POST" action="/delete_apriser">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
+                    </div>
+                </div>
+                <button class="button is-block is-info is-large is-fullwidth">DELETE</button>
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="/block_apriser">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
+                    </div>
+                </div>
+                <button class="button is-block is-info is-large is-fullwidth">BLOCK/UNBLOCK</button>
+            </form>
+        </div>
+    </div>
+    <div class="column is-three-quarters">
+        <div>
+            <h3 class="title is-child">Garage Table</h3>
+            <div class="box">
+                <div class="colums">
+                    <table>
+                        <tr>
+                            <th>שם</th>
+                            <th>USER</th>
+                            <th>סיסמא</th>
+                            <th> EMAIL </th>
+                            <th> מייצג </th>
+                            <th> נייד </th>
+                            <th> טלפון  </th>
+                            <th> שם_למסמכים </th>
+                            <th> פקס </th>
+                            <th> כתובת </th>
+                            <th> עיר </th>
+                            <th> ח.פ./ת.ז </th>
+                        </tr>
+                        <indent>
+                            {% for x in aprisers: %}
+                            {% if x.isBlocked == 1 %}
+                            <tr style="background-color: red">
+                            {% else %}
+                            <tr>
+                            {% endif %}
+                                <th>{{ x.name }}</th>
+                                <th>{{ x.user}}</th>
+                                <th>{{ x.password}}</th>
+                                <th>{{ x.email}}</th>
+                                <th>{{ x.login}}</th>
+                                <th>{{ x.mobile}}</th>
+                                <th>{{ x.phone}}</th>
+                                <th>{{ x.organization}}</th>
+                                <th>{{ x.fax}}</th>
+                                <th>{{ x.adres}}</th>
+                                <th>{{ x.city}}</th>
+                                <th>{{ x.passportid}}</th>
+                            </tr>
+                            {% endfor %}
+                        </indent>
+                    </table>
                 </div>
             </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="סיסמא">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="login" placeholder="מייצג" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="mobile" placeholder="נייד" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="phone" placeholder="טלפון" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="orgamization" placeholder="שם_למסמכים" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="fax" placeholder="פקס" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="adres" placeholder="כתובת" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="city" placeholder="עיר" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="passpotid" placeholder="ח.פ./ת.ז" autofocus="">
-                </div>
-            </div>
-
-            <button class="button is-block is-info is-large is-fullwidth">Add/Update Garage</button>
-        </form>
-
-        <form method="POST" action="/create_garage">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="name" placeholder="שם" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="סיסמא">
-                </div>
-            </div>
-
-            <button class="button is-block is-info is-large is-fullwidth">Add/Update Appriser</button>
-        </form>
+        </div>
     </div>
 </div>
+
+
     {% endblock %}
 
