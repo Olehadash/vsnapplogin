@@ -15,14 +15,14 @@ def login_app_post():
     #content = request.get_json()
 
     login = request.form.get('login')
-    password = request.form.get('password')
+    #password = request.form.get('password')
     apriser = Apriser.query.filter_by(user=login).first()
 
     if not apriser:
         return jsonify(msg = "Logon Error. "), 401
 
-    if not apriser.password == password:
-        return jsonify(msg = "Password Error. "), 401
+    #if not apriser.password == password:
+    #    return jsonify(msg = "Password Error. "), 401
 
     return jsonify(apriser.serialize), 200
 
@@ -30,6 +30,7 @@ def login_app_post():
 def login_garage_app():
 
     login = request.form.get('login')
+    password = request.form.get('password')
     #content = request.get_json()
 
     #login = content['login']
@@ -37,6 +38,9 @@ def login_garage_app():
 
     if not garage:
         return jsonify(msg = "Logon Error. "), 401
+
+    if not apriser.password == password:
+        return jsonify(msg = "Password Error. "), 401
 
     return jsonify(data = garage.serialize), 200
 
