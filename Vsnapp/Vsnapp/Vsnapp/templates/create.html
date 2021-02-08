@@ -2,6 +2,53 @@
 
 {% block content %}
 <div class="tile is-ancestor columns">
+    <div class="column is-three-quarters">
+        <div>
+            <h3 class="title is-child">Garage Table</h3>
+            <div class="box">
+                <div class="colums">
+                    <table>
+                        <tr>
+                            <th>שם</th>
+                            <th>USER</th>
+                            <th>סיסמא</th>
+                            <th> EMAIL </th>
+                            <th> מייצג </th>
+                            <th> נייד </th>
+                            <th> טלפון  </th>
+                            <th> שם_למסמכים </th>
+                            <th> פקס </th>
+                            <th> כתובת </th>
+                            <th> עיר </th>
+                            <th> ח.פ./ת.ז </th>
+                        </tr>
+                        <indent>
+                            {% for x in aprisers: %}
+                            {% if x.isBlocked == 1 %}
+                            <tr style="background-color: red">
+                                {% else %}
+                            <tr>
+                                {% endif %}
+                                <th>{{ x.name }}</th>
+                                <th>{{ x.user}}</th>
+                                <th>{{ x.password}}</th>
+                                <th>{{ x.email}}</th>
+                                <th>{{ x.login}}</th>
+                                <th>{{ x.mobile}}</th>
+                                <th>{{ x.phone}}</th>
+                                <th>{{ x.organization}}</th>
+                                <th>{{ x.fax}}</th>
+                                <th>{{ x.adres}}</th>
+                                <th>{{ x.city}}</th>
+                                <th>{{ x.passportid}}</th>
+                            </tr>
+                            {% endfor %}
+                        </indent>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="column is-one-quarter">
         <h3 class="title">Add Customer</h3>
         <div class="box">
@@ -111,53 +158,7 @@
             </form>
         </div>
     </div>
-    <div class="column is-three-quarters">
-        <div>
-            <h3 class="title is-child">Garage Table</h3>
-            <div class="box">
-                <div class="colums">
-                    <table>
-                        <tr>
-                            <th>שם</th>
-                            <th>USER</th>
-                            <th>סיסמא</th>
-                            <th> EMAIL </th>
-                            <th> מייצג </th>
-                            <th> נייד </th>
-                            <th> טלפון  </th>
-                            <th> שם_למסמכים </th>
-                            <th> פקס </th>
-                            <th> כתובת </th>
-                            <th> עיר </th>
-                            <th> ח.פ./ת.ז </th>
-                        </tr>
-                        <indent>
-                            {% for x in aprisers: %}
-                            {% if x.isBlocked == 1 %}
-                            <tr style="background-color: red">
-                            {% else %}
-                            <tr>
-                            {% endif %}
-                                <th>{{ x.name }}</th>
-                                <th>{{ x.user}}</th>
-                                <th>{{ x.password}}</th>
-                                <th>{{ x.email}}</th>
-                                <th>{{ x.login}}</th>
-                                <th>{{ x.mobile}}</th>
-                                <th>{{ x.phone}}</th>
-                                <th>{{ x.organization}}</th>
-                                <th>{{ x.fax}}</th>
-                                <th>{{ x.adres}}</th>
-                                <th>{{ x.city}}</th>
-                                <th>{{ x.passportid}}</th>
-                            </tr>
-                            {% endfor %}
-                        </indent>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 
