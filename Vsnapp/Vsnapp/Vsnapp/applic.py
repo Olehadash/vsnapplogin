@@ -41,10 +41,10 @@ def login_garage_app():
     if not garage:
         return jsonify(msg = "Logon Error. "), 401
 
-    if not apriser.password == password:
+    if not garage.password == password:
         return jsonify(msg = "Password Error. "), 401
 
-    if apriser.isBlocked == 1:
+    if garage.isBlocked == 1:
         return jsonify(msg = "User Blocked "), 401
 
     return jsonify(data = garage.serialize), 200
