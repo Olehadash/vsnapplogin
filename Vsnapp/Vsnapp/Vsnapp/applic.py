@@ -16,7 +16,7 @@ def login_app_post():
 
     login = request.form.get('login')
     #password = request.form.get('password')
-    apriser = Apriser.query.filter_by(user=login).first()
+    apriser = Garage.query.filter_by(user=login).first()
 
     if not apriser:
         return jsonify(msg = "Logon Error. "), 401
@@ -36,7 +36,7 @@ def login_garage_app():
     #content = request.get_json()
 
     #login = content['login']
-    garage = Garage.query.filter_by(user=login).first()
+    garage = Apriser.query.filter_by(user=login).first()
 
     if not garage:
         return jsonify(msg = "Logon Error. "), 401
