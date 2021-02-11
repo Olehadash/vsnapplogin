@@ -47,7 +47,7 @@ def login_garage_app():
     if garage.isBlocked == 1:
         return jsonify(msg = "User Blocked "), 401
 
-    return jsonify(data = garage.serialize), 200
+    return jsonify(garage.serialize), 200
 
 @applic.route('/get_garage_app', methods=['GET'])
 def get_garage_app():

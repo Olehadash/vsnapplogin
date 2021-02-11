@@ -56,12 +56,11 @@ def create_app():
 
 app=create_app()
 jwt = JWTManager(app)
-socketio = SocketIO(app, logger=True, engineio_logger=True)
+io = SocketIO(app, logger=True, engineio_logger=True)
 
 @socketio.on('connect')
 def connect():
     print('Client connected')
-    send({'data': 'Connected'})
 
 @socketio.on('disconnect')
 def disconnect():
@@ -73,9 +72,6 @@ def handle_message(data):
     print('received message: ' + data)
     emit('message', data, broadcast=True)
 
-@socketio.on('json')
-def handle_json(json):
-    send(json, json=True)
 
 #@socketio.on('message')
 #def handle_my_custom_event(json, methods=['GET', 'POST']):

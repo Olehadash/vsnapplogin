@@ -75,6 +75,7 @@
     <Content Include="Vsnapp\templates\base.html" />
     <Content Include="Vsnapp\templates\create.html" />
     <Content Include="Vsnapp\templates\createGarage.html" />
+    <Content Include="Vsnapp\templates\google51a9eafcdf6ea4e5.html" />
     <Content Include="Vsnapp\templates\login.html" />
   </ItemGroup>
   <ItemGroup>
