@@ -56,7 +56,7 @@ def create_app():
 
 app=create_app()
 jwt = JWTManager(app)
-io = SocketIO(app, logger=True, engineio_logger=True)
+socketio = SocketIO(app, logger=True, engineio_logger=True)
 
 @socketio.on('connect')
 def connect():

@@ -14,6 +14,10 @@ auth = Blueprint('auth', __name__)
 def login():
     return render_template('login.html')
 
+@auth.route('/gdpr')
+def gdpr():
+    return render_template('privasypolisy.html')
+
 @auth.route('/login', methods=['POST'])
 def login_post():
     
@@ -52,11 +56,17 @@ def create_garage():
 
 @auth.route('/create_garage', methods=['POST'])
 def create_garage_post():
+    id = request.form.get('id')
     name = request.form.get('name')
     user = request.form.get('user')
     password = request.form.get('password')
 
-    garage = Garage.query.filter_by(name=name).first()
+    garage = Garage.query.filter_by(user=user).first()
+
+    if garage:
+        return flash("GArage with user name exist. Please rename it")
+
+    garage = Garage.query.filter_by(id=id).first()
 
     if garage:
         garage.name= name
@@ -66,6 +76,7 @@ def create_garage_post():
         flash('Existing Created updated.')
         return redirect(url_for('auth.create'))
 
+    
 
     new_garage = Garage(name = name, user = user,  password = password)
     db.session.add(new_garage)
@@ -76,6 +87,7 @@ def create_garage_post():
 
 @auth.route('/create_apriser', methods=['POST'])
 def create_apriser():
+    id = request.form.get('id')
     name = request.form.get('name')
     user = request.form.get('user')
     email = request.form.get('email')
@@ -89,10 +101,17 @@ def create_apriser():
     city = request.form.get('city')
     passpotid = request.form.get('passpotid')
 
-    apriser = Apriser.query.filter_by(user=user).first()
+
+    apriser = Apriser.query.filter_by(id=id).first()
+
+    app = Apriser.query.filter_by(user=user).first()
+
+    if app:
+        return flash("User with this name Exist! Please enter another name")
 
     if apriser:
-        apriser.user= user
+        if user != "":
+            apriser.user= user
         if name != "":
             apriser.name= name
         if email != "":
@@ -116,14 +135,14 @@ def create_apriser():
         if passpotid != "":
             apriser.passpotid= passpotid
         db.session.commit()
-        flash('Existing Apriser updated.')
+        flash('Existing Apraiser updated.')
         return redirect(url_for('auth.create'))
 
 
     new_apriser = Apriser(name = name, user = user, email = email, password = password, login = login, mobile=mobile, phone=phone, fax = fax, organization=organization, adres = adres, city=city, passpotid=passpotid)
     db.session.add(new_apriser)
     db.session.commit()
-    flash('Apriser Created.')
+    flash('Apraiser Created.')
     return redirect(url_for('auth.create'))
 
 @auth.route('/delete_apriser', methods=['POST'])
