@@ -42,36 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Vsnapp\" />
-    <Folder Include="Vsnapp\static\" />
-    <Folder Include="Vsnapp\static\content\" />
-    <Folder Include="Vsnapp\static\fonts\" />
-    <Folder Include="Vsnapp\static\scripts\" />
     <Folder Include="Vsnapp\templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
-    <Content Include="Vsnapp\static\content\bootstrap.css" />
-    <Content Include="Vsnapp\static\content\bootstrap.min.css" />
-    <Content Include="Vsnapp\static\content\site.css" />
-    <Content Include="Vsnapp\static\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Vsnapp\static\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Vsnapp\static\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Vsnapp\static\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Vsnapp\static\scripts\bootstrap.js" />
-    <Content Include="Vsnapp\static\scripts\bootstrap.min.js" />
-    <Content Include="Vsnapp\static\scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Vsnapp\static\scripts\jquery-1.10.2.js" />
-    <Content Include="Vsnapp\static\scripts\jquery-1.10.2.min.js" />
-    <Content Include="Vsnapp\static\scripts\jquery-1.10.2.min.map" />
-    <Content Include="Vsnapp\static\scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Vsnapp\static\scripts\jquery.validate.js" />
-    <Content Include="Vsnapp\static\scripts\jquery.validate.min.js" />
-    <Content Include="Vsnapp\static\scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Vsnapp\static\scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Vsnapp\static\scripts\modernizr-2.6.2.js" />
-    <Content Include="Vsnapp\static\scripts\respond.js" />
-    <Content Include="Vsnapp\static\scripts\respond.min.js" />
-    <Content Include="Vsnapp\static\scripts\_references.js" />
     <Content Include="Vsnapp\templates\base.html" />
     <Content Include="Vsnapp\templates\create.html" />
     <Content Include="Vsnapp\templates\createGarage.html" />

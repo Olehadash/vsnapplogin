@@ -45,6 +45,10 @@ class Apriser(db.Model, UserMixin):
 class Garage(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     name = db.Column(db.String(1000))
+    surname = db.Column(db.String(1000))
+    phone = db.Column(db.String(1000))
+    email = db.Column(db.String(1000))
+    passport = db.Column(db.String(1000))
     user = db.Column(db.String(1000))
     isBusy = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     password = db.Column(db.String(1000))

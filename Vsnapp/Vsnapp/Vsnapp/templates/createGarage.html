@@ -6,13 +6,17 @@
         <div>
             <h3 class="title is-child">Apriser Table</h3>
             <div class="box">
-                <div class="colums">
+                <div >
                     <table>
                         <tr>
-                            <th>id</th>
-                            <th>שם</th>
-                            <th>USER</th>
-                            <th>סיסמא</th>
+                            <th style="width: 2%; text-align: end" >id</th>
+                            <th style="width: 8%; text-align: end" >שם פרטי</th>
+                            <th style="width: 8%; text-align: end" >שם משפחה</thstyle="width:>
+                            <th style="width: 10%; text-align: end" >מס' טלפון נייד</th>
+                            <th style="width: 15%; text-align: end" >מייל</th>
+                            <th style="width: 8%; text-align: end" >USER</th>
+                            <th style="width: 8%; text-align: end" >סיסמא</th>
+                            <th style="width: 10%; text-align: end">ת.ז </th>
                         </tr>
                         <indent>
                             {% for x in aprisers: %}
@@ -21,10 +25,14 @@
                                 {% else %}
                             <tr>
                                 {% endif %}
-                                <th>{{ x.id }}</th>
-                                <th>{{ x.name }}</th>
-                                <th>{{ x.user}}</th>
-                                <th>{{ x.password}}</th>
+                                <td style="width: 2%; text-align: end" >{{ x.id }}</td>
+                                <td style="width: 8%; text-align: end" >{{ x.name }}</td>
+                                <td style="width: 8%; text-align: end" >{{ x.surname }}</td>
+                                <td style="width: 10%; text-align: end">{{ x.phone }}</td>
+                                <td style="width: 15%; text-align: end">{{ x.email }}</td>
+                                <td style="width: 8%; text-align: end" >{{ x.user}}</td>
+                                <td style="width: 8%; text-align: end" >{{ x.password}}</td>
+                                <td style="width: 10%; text-align: end">{{ x.passport }}</td>
                             </tr>
                             {% endfor %}
                         </indent>
@@ -51,19 +59,39 @@
                 </div>
                 <div class="field">
                     <div class="control">
-                        <input class="input is-large" type="text" name="name" placeholder="שם" autofocus="">
+                        <input class="input is-large" type="text" name="name" placeholder="שם פרטי">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="surname" placeholder="שם משפחה" >
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="phone" placeholder="מס' טלפון נייד">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="email" name="email" placeholder="מייל">
                     </div>
                 </div>
 
                 <div class="field">
                     <div class="control">
-                        <input class="input is-large" type="text" name="user" placeholder="USER" autofocus="">
+                        <input class="input is-large" type="text" name="user" placeholder="USER">
                     </div>
                 </div>
 
                 <div class="field">
                     <div class="control">
                         <input class="input is-large" type="password" name="password" placeholder="סיסמא">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="passport" placeholder="	ת.ז">
                     </div>
                 </div>
                 <button class="button is-block is-info is-large is-fullwidth">Add/Update</button>

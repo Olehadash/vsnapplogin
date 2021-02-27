@@ -58,6 +58,10 @@ def create_garage():
 def create_garage_post():
     id = request.form.get('id')
     name = request.form.get('name')
+    surname = request.form.get('surname')
+    phone = request.form.get('phone')
+    email = request.form.get('email')
+    passport = request.form.get('passport')
     user = request.form.get('user')
     password = request.form.get('password')
 
@@ -69,16 +73,30 @@ def create_garage_post():
     garage = Garage.query.filter_by(id=id).first()
 
     if garage:
-        garage.name= name
-        garage.user= user
-        apriser.password= password
+        if name!= "":
+            garage.name= name
+        if user!= "":
+            garage.user= user
+        if password!= "":
+            garage.password= password
+        if surname!= "":
+            garage.surname= surname
+        if phone!= "":
+            garage.phone= phone
+        if email!= "":
+            garage.email= email
+        if passport!= "":
+            garage.passport= passport
+
         
+        db.session.commit()
+
         flash('Existing Created updated.')
         return redirect(url_for('auth.create'))
 
     
 
-    new_garage = Garage(name = name, user = user,  password = password)
+    new_garage = Garage(name = name, user = user,  password = password, surname = surname, phone = phone, email= email, passport = passport)
     db.session.add(new_garage)
     db.session.commit()
     flash('Garage Created.')
