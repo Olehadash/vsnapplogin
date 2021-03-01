@@ -163,14 +163,14 @@ def create_apriser():
         if passpotid != "":
             apriser.passpotid= passpotid
         db.session.commit()
-        flash('Existing Apraiser updated.')
+        flash('Existing Garage updated.')
         return redirect(url_for('auth.create'))
 
 
     new_apriser = Apriser(name = name, user = user, email = email, password = password, login = login, mobile=mobile, phone=phone, fax = fax, organization=organization, adres = adres, city=city, passportid=passpotid)
     db.session.add(new_apriser)
     db.session.commit()
-    flash('Apraiser Created.')
+    flash('Garage Created.')
     return redirect(url_for('auth.create'))
 
 @auth.route('/delete_apriser', methods=['POST'])
