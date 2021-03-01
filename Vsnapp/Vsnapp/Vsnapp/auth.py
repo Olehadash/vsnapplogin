@@ -67,8 +67,9 @@ def create_garage_post():
 
     garage = Garage.query.filter_by(user=user).first()
 
-    if garage:
-        return flash("GArage with user name exist. Please rename it")
+    if id!="":
+        if garage:
+            return flash("GArage with user name exist. Please rename it")
 
     garage = Garage.query.filter_by(id=id).first()
 
@@ -92,7 +93,7 @@ def create_garage_post():
         db.session.commit()
 
         flash('Existing Created updated.')
-        return redirect(url_for('auth.create'))
+        return redirect(url_for('auth.create_garage'))
 
     
 
@@ -100,7 +101,7 @@ def create_garage_post():
     db.session.add(new_garage)
     db.session.commit()
     flash('Garage Created.')
-    return redirect(url_for('auth.create'))
+    return redirect(url_for('auth.create_garage'))
     
 
 @auth.route('/create_apriser', methods=['POST'])
@@ -122,10 +123,10 @@ def create_apriser():
 
     apriser = Apriser.query.filter_by(id=id).first()
 
-    app = Apriser.query.filter_by(user=user).first()
-
-    if app:
-        return flash("User with this name Exist! Please enter another name")
+    if id =="":
+        app = Apriser.query.filter_by(user=user).first()
+        if app :
+            return flash("User with this name Exist! Please enter another name")
 
     if apriser:
         if user != "":
@@ -157,7 +158,7 @@ def create_apriser():
         return redirect(url_for('auth.create'))
 
 
-    new_apriser = Apriser(name = name, user = user, email = email, password = password, login = login, mobile=mobile, phone=phone, fax = fax, organization=organization, adres = adres, city=city, passpotid=passpotid)
+    new_apriser = Apriser(name = name, user = user, email = email, password = password, login = login, mobile=mobile, phone=phone, fax = fax, organization=organization, adres = adres, city=city, passportid=passpotid)
     db.session.add(new_apriser)
     db.session.commit()
     flash('Apraiser Created.')
@@ -208,13 +209,13 @@ def delete_garage():
 
     if not apriser:
         flash('NO user with this parametr')
-        return redirect(url_for('auth.create'))
+        return redirect(url_for('auth.create_garage'))
     
     db.session.delete(apriser)
     db.session.commit()
 
     flash('Apriser Created.')
-    return redirect(url_for('auth.create'))
+    return redirect(url_for('auth.create_garage'))
 
 @auth.route('/block_garage', methods=['POST'])
 def block_garage():
@@ -224,7 +225,7 @@ def block_garage():
 
     if not apriser:
         flash('NO user with this parametr')
-        return redirect(url_for('auth.create'))
+        return redirect(url_for('auth.create_garage'))
     
     if apriser.isBlocked == 1:
         apriser.isBlocked = 0
@@ -233,7 +234,7 @@ def block_garage():
     db.session.commit()
 
     flash('Apriser Created.')
-    return redirect(url_for('auth.create'))
+    return redirect(url_for('auth.create_garage'))
 
 @auth.route("/logout")
 @login_required
