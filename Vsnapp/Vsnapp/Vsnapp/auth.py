@@ -65,11 +65,16 @@ def create_garage_post():
     user = request.form.get('user')
     password = request.form.get('password')
 
+    if id == "" and user == "":
+        flash("Pleace Fill The Field ID if you wnat to update or 'user' field if you  want to Add new record!!!")
+        return redirect(url_for('auth.create_garage'))
+
     garage = Garage.query.filter_by(user=user).first()
 
     if id!="":
         if garage:
-            return flash("GArage with user name exist. Please rename it")
+            flash("GArage with user name exist. Please rename it")
+            return redirect(url_for('auth.create_garage'))
 
     garage = Garage.query.filter_by(id=id).first()
 
@@ -92,7 +97,7 @@ def create_garage_post():
         
         db.session.commit()
 
-        flash('Existing Created updated.')
+        flash('Existing Updated.')
         return redirect(url_for('auth.create_garage'))
 
     
@@ -126,7 +131,11 @@ def create_apriser():
     if id =="":
         app = Apriser.query.filter_by(user=user).first()
         if app :
-            return flash("User with this name Exist! Please enter another name")
+            flash("User with this name Exist! Please enter another name")
+            return redirect(url_for('auth.create'))
+        else:
+            flash("Pleace Fill The Field ID if you wnat to update or 'user' field if you  want to Add new record!!!")
+            return redirect(url_for('auth.create'))
 
     if apriser:
         if user != "":
