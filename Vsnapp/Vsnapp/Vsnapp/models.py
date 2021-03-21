@@ -17,6 +17,11 @@ class Apriser(db.Model, UserMixin):
     adres = db.Column(db.String(1000))
     city = db.Column(db.String(1000))
     passportid = db.Column(db.Integer)
+    sim = db.Column(db.String(1000))
+    deviceid = db.Column(db.String(1000))
+    model = db.Column(db.String(1000))
+    importer = db.Column(db.String(1000))
+    code = db.Column(db.String(1000))
     isBusy = db.Column(db.Boolean)
     isBlocked = db.Column(db.Integer)
 
