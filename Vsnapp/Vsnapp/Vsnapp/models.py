@@ -43,7 +43,8 @@ class Apriser(db.Model, UserMixin):
                 'organization' : self.organization,
                 'adres' : self.adres,
                 'city' : self.city,
-                'passportid' : self.city
+                'passportid' : self.city,
+                'isBlocked' : self.isBlocked
             }
 
 

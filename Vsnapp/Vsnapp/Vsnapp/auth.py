@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, request, jsonify, abort, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_socketio import emit
 from .models import *
 from . import db
 from flask_login import UserMixin
@@ -209,24 +210,7 @@ def delete_apriser():
     flash('Apriser Created.')
     return redirect(url_for('auth.create'))
 
-@auth.route('/block_apriser', methods=['POST'])
-def block_apriser():
-    user = request.form.get('user')
 
-    apriser = Apriser.query.filter_by(user=user).first()
-
-    if not apriser:
-        flash('NO user with this parametr')
-        return redirect(url_for('auth.create'))
-    
-    if apriser.isBlocked == 1:
-        apriser.isBlocked = 0
-    else:
-        apriser.isBlocked = 1
-    db.session.commit()
-
-    flash('Apriser Created.')
-    return redirect(url_for('auth.create'))
 
 
 
@@ -246,24 +230,7 @@ def delete_garage():
     flash('Apriser Created.')
     return redirect(url_for('auth.create_garage'))
 
-@auth.route('/block_garage', methods=['POST'])
-def block_garage():
-    user = request.form.get('user')
 
-    apriser = Garage.query.filter_by(user=user).first()
-
-    if not apriser:
-        flash('NO user with this parametr')
-        return redirect(url_for('auth.create_garage'))
-    
-    if apriser.isBlocked == 1:
-        apriser.isBlocked = 0
-    else:
-        apriser.isBlocked = 1
-    db.session.commit()
-
-    flash('Apriser Created.')
-    return redirect(url_for('auth.create_garage'))
 
 @auth.route("/logout")
 @login_required

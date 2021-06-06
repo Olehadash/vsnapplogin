@@ -2,7 +2,7 @@
 The flask application package.
 """
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, flash, redirect, url_for
 from flask_login import LoginManager, current_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy import *
@@ -10,6 +10,7 @@ from flask_jwt_extended import JWTManager
 from flask import render_template
 from datetime import datetime
 from flask_socketio import SocketIO, send, emit, disconnect
+
 
 db = SQLAlchemy()
 
@@ -81,3 +82,47 @@ def handle_message(data):
 
 def messageReceived(methods=['GET', 'POST']):
     print('message was received!!!')
+
+from .models import *
+
+@app.route('/block_apriser', methods=['POST'])
+def block_apriser():
+    user = request.form.get('user')
+
+    apriser = Apriser.query.filter_by(user=user).first()
+
+    if not apriser:
+        flash('NO user with this parametr')
+        return redirect(url_for('auth.create'))
+    
+    if apriser.isBlocked == 1:
+        apriser.isBlocked = 0
+        db.session.commit()
+    else:
+        apriser.isBlocked = 1
+        db.session.commit()
+        socketio.emit('message', "{ \"from\" : \""+apriser.user+"\", \"to\" : \"\", \"comand\" : \"block\"}", broadcast=True)
+    
+
+    flash('Apriser Created.')
+    return redirect(url_for('auth.create'))
+
+@app.route('/block_garage', methods=['POST'])
+def block_garage():
+    user = request.form.get('user')
+
+    apriser = Garage.query.filter_by(user=user).first()
+
+    if not apriser:
+        flash('NO user with this parametr')
+        return redirect(url_for('auth.create_garage'))
+    
+    if apriser.isBlocked == 1:
+        apriser.isBlocked = 0
+    else:
+        apriser.isBlocked = 1
+        socketio.emit('message', "{ \"from\" : \""+apriser.user+"\", \"to\" : \"\", \"comand\" : \"block\"}", broadcast=True)
+    db.session.commit()
+
+    flash('Apriser Created.')
+    return redirect(url_for('auth.create_garage'))
