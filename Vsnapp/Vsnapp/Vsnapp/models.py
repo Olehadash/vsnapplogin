@@ -24,6 +24,7 @@ class Apriser(db.Model, UserMixin):
     code = db.Column(db.String(1000))
     isBusy = db.Column(db.Boolean)
     isBlocked = db.Column(db.Integer)
+    company = db.Column(db.String(1000))
 
     def __repr__(self):
         return '<Apriser %r>' % self.username
@@ -59,6 +60,7 @@ class Garage(db.Model, UserMixin):
     isBusy = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     password = db.Column(db.String(1000))
     isBlocked = db.Column(db.Integer)
+    company = db.Column(db.String(1000))
 
     def __repr__(self):
         return '<Garage %r>' % self.name

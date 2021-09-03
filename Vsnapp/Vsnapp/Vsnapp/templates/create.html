@@ -11,6 +11,7 @@
                         <tr>
                             <th style="width: 2%; text-align: end">id</th>
                             <th style="width: 6%; text-align: end">שם</th>
+                            <th style="width: 6%; text-align: end">חֶברָה</th>
                             <th style="width: 6%; text-align: end">USER</th>
                             <th style="width: 6%; text-align: end">סיסמא</th>
                             <th style="width: 10%; text-align: end"> EMAIL </th>
@@ -37,6 +38,7 @@
                                 {% endif %}
                                 <td style="width: 2%; text-align: end">{{ x.id }}</td>
                                 <td style="width: 6%; text-align: end">{{ x.name }}</td>
+                                <td style="width: 6%; text-align: end">{{ x.company }}</td>
                                 <td style="width: 6%; text-align: end">{{ x.user}}</td>
                                 <td style="width: 6%; text-align: end">{{ x.password}}</td>
                                 <td style="width: 10%; text-align: end">{{ x.email}}</td>
@@ -82,6 +84,13 @@
                     <div class="control">
                         <h2 calss="title">שם</h2>
                         <input class="input is-large" type="text" name="name" placeholder="שם" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <h2 calss="title">חֶברָה</h2>
+                        <input class="input is-large" type="text" name="company" placeholder="חֶברָה" autofocus="">
                     </div>
                 </div>
 

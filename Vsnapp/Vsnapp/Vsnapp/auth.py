@@ -65,6 +65,7 @@ def create_garage_post():
     passport = request.form.get('passport')
     user = request.form.get('user')
     password = request.form.get('password')
+    company = request.form.get('company')
 
     if id == "" and user == "":
         flash("Pleace Fill The Field ID if you wnat to update or 'user' field if you  want to Add new record!!!")
@@ -94,6 +95,8 @@ def create_garage_post():
             garage.email= email
         if passport!= "":
             garage.passport= passport
+        if company != "":
+            garage.company = company
 
         
         db.session.commit()
@@ -105,7 +108,7 @@ def create_garage_post():
         flash("Field 'Name', 'USER', or 'Password' can not be Null")
         return redirect(url_for('auth.create'))
 
-    new_garage = Garage(name = name, user = user,  password = password, surname = surname, phone = phone, email= email, passport = passport)
+    new_garage = Garage(name = name, user = user,  password = password, surname = surname, phone = phone, email= email, passport = passport, company=company)
     db.session.add(new_garage)
     db.session.commit()
     flash('Garage Created.')
@@ -132,7 +135,7 @@ def create_apriser():
     model = request.form.get('model')
     importer = request.form.get('importer')
     code = request.form.get('code')
-
+    company = request.form.get('company')
 
     apriser = Apriser.query.filter_by(id=id).first()
 
@@ -180,6 +183,9 @@ def create_apriser():
             apriser.importer= importer
         if code != "":
             apriser.code= code
+        if company != "":
+            apriser.company = company
+
         db.session.commit()
         flash('Existing Garage updated.')
         return redirect(url_for('auth.create'))
@@ -188,7 +194,7 @@ def create_apriser():
         flash("Field 'Name', 'USER', or 'Password' can not be Null")
         return redirect(url_for('auth.create'))
 
-    new_apriser = Apriser(name = name, user = user, email = email, password = password, login = login, mobile=mobile, phone=phone, fax = fax, organization=organization, adres = adres, city=city, passportid=passpotid, sim = sim, deviceid = deviceid, model= model, importer = importer, code=code)
+    new_apriser = Apriser(name = name, user = user, email = email, password = password, login = login, mobile=mobile, phone=phone, fax = fax, organization=organization, adres = adres, city=city, passportid=passpotid, sim = sim, deviceid = deviceid, model= model, importer = importer, code=code, company = company)
     db.session.add(new_apriser)
     db.session.commit()
     flash('Garage Created.')
@@ -209,10 +215,6 @@ def delete_apriser():
 
     flash('Apriser Created.')
     return redirect(url_for('auth.create'))
-
-
-
-
 
 @auth.route('/delete_garage', methods=['POST'])
 def delete_garage():
